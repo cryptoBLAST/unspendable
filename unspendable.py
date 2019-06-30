@@ -61,11 +61,14 @@ def generate (name, network):
 
     # Pick network.
     if network == 'testnet':
-        prefix_string = 'mv'
-        prefix_bytes = b'\x6f'
+        prefix_string = 'b'
+        prefix_bytes = b'\x55'
     elif network == 'mainnet':
-        prefix_string = '1'
-        prefix_bytes = b'\x00'
+        prefix_string = 'B'
+        prefix_bytes = b'\x19'
+    elif network == 'regtest':
+        prefix_string = 'K'
+        prefix_bytes = b'\x2d'
     else:
         raise Exception('unknown network')
 
@@ -90,3 +93,4 @@ if __name__ == '__main__':
     name = sys.argv[1]
     print('mainnet:', generate(name, 'mainnet'))
     print('testnet:', generate(name, 'testnet'))
+    print('regtest:', generate(name, 'regtest'))
